@@ -1,0 +1,68 @@
+<div class="container" style="padding-top:80px;">
+
+<div class="row">
+  <form class="col s12" #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+      <input name="_id" placeholder="Name" id="_id" #_id="ngModel" type="hidden" class="validate" [(ngModel)]="this.employeeService.selectedEmployee._id" >
+
+    <div class="row">
+      <div class="input-field col s6">
+        <input name="name" placeholder="Name" id="name" #name="ngModel"  type="text" class="validate" [(ngModel)]="employeeService.selectedEmployee.name" required>
+        <label for="name">Name</label>
+      </div>
+      <div class="input-field col s6">
+        <input name="position"  type="text" #position="ngModel" [(ngModel)]="employeeService.selectedEmployee.position" class="validate" required>
+        <label for="position">Position</label>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="input-field col s12">
+        <input name="office" #office="ngModel" [(ngModel)]="employeeService.selectedEmployee.office"  type="text" class="validate" required>
+        <label for="office">Office</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input name="salary" #salary="ngModel" [(ngModel)]="employeeService.selectedEmployee.salary" type="text" class="validate" required>
+        <label for="salary">Salary</label>
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light"   style="float:right;" type="submit" name="action">Submit
+      <i class="material-icons right">send</i>
+    </button>
+    <button class="btn waves-effect waves-light" (click)="resetForm(employeeForm)" style="float:right;margin-right:10px;" type="button" name="action">Reset
+        <i class="material-icons right">send</i>
+      </button>
+  </form>
+</div>
+  <br>
+  <br>
+  <br>
+  <table>
+      <thead>
+        <tr>
+            <th>_id</th>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Salary</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let user of employeeService.employees" >
+          <td>{{user._id}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.position}}</td>
+          <td>{{user.office}}</td>
+          <td>{{user.salary}}</td>
+          <td><a (click)="editEmployee(user._id)"><i class="material-icons">edit</i></a></td>
+          <td><a  (click)="deleteEmployee(user._id)"><i class="material-icons">delete</i></a></td>
+        </tr>
+       
+      </tbody>
+    </table>
+    <br>
+  <br>
+  <br>
+</div>
